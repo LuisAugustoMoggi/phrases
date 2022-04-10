@@ -65,7 +65,7 @@ public class PhraseRepository {
                         " NAME " +
                         " FROM T_PHRASES " +
                         " INNER JOIN T_CATEGORIES ON T_CATEGORIES.CATEGORY_ID = T_PHRASES.CATEGORY_ID " +
-                        " ORDER BY IMAGE_ID OFFSET ? LIMIT ?",
+                        " ORDER BY PHRASE_ID OFFSET ? LIMIT ?",
                 this::buildPhrase,
                 (page - 1) * DEFAULT_PAGE_SIZE,
                 DEFAULT_PAGE_SIZE
@@ -83,7 +83,7 @@ public class PhraseRepository {
                         " FROM T_PHRASES " +
                         " INNER JOIN T_CATEGORIES ON T_CATEGORIES.CATEGORY_ID = T_PHRASES.CATEGORY_ID " +
                         " WHEW T_CATEGORIES.CATEGORY_ID = ? " +
-                        " ORDER BY IMAGE_ID OFFSET ? LIMIT ?",
+                        " ORDER BY PHRASE_ID OFFSET ? LIMIT ?",
                 this::buildPhrase,
                 categoryId,
                 (page - 1) * DEFAULT_PAGE_SIZE,
