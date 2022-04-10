@@ -10,6 +10,6 @@ public class InfoController {
 
     @GetMapping
     public String info() {
-        return "OK";
+        return "{\"status\": \"OK\"}";
     }
 }
