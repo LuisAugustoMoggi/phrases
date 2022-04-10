@@ -14,11 +14,18 @@ public class PhraseController {
     private final PhraseRepository phraseRepository;
 
     @GetMapping
-    public List<Phrase> getCategories(@RequestParam(value = "page", defaultValue = "-1") Integer page) {
+    public List<Phrase> getPhrases(@RequestParam(value = "page", defaultValue = "-1") Integer page) {
         if (page == -1)
             return phraseRepository.findAll();
         else
             return phraseRepository.findPaginate(page);
+    }
+
+    @GetMapping("/category/{categoryId}")
+    public List<Phrase> getPhrasesByCategory(
+            @PathVariable("categoryId") Long categoryId,
+            @RequestParam(value = "page", defaultValue = "1") Integer page) {
+            return phraseRepository.findPaginateByCategory(page, categoryId);
     }
 
     @PostMapping

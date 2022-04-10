@@ -71,4 +71,23 @@ public class PhraseRepository {
                 DEFAULT_PAGE_SIZE
         );
     }
+
+    public List<Phrase> findPaginateByCategory(Integer page, Long categoryId) {
+        return jdbcTemplate.query(
+                "SELECT " +
+                        " PHRASE_ID, " +
+                        " PHRASE, " +
+                        " CREATED_ON, " +
+                        " T_CATEGORIES.CATEGORY_ID, " +
+                        " NAME " +
+                        " FROM T_PHRASES " +
+                        " INNER JOIN T_CATEGORIES ON T_CATEGORIES.CATEGORY_ID = T_PHRASES.CATEGORY_ID " +
+                        " WHEW T_CATEGORIES.CATEGORY_ID = ? " +
+                        " ORDER BY IMAGE_ID OFFSET ? LIMIT ?",
+                this::buildPhrase,
+                categoryId,
+                (page - 1) * DEFAULT_PAGE_SIZE,
+                DEFAULT_PAGE_SIZE
+        );
+    }
 }
