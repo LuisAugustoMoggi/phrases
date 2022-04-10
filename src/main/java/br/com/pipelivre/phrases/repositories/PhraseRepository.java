@@ -82,7 +82,7 @@ public class PhraseRepository {
                         " NAME " +
                         " FROM T_PHRASES " +
                         " INNER JOIN T_CATEGORIES ON T_CATEGORIES.CATEGORY_ID = T_PHRASES.CATEGORY_ID " +
-                        " WHEW T_CATEGORIES.CATEGORY_ID = ? " +
+                        " WHERE T_CATEGORIES.CATEGORY_ID = ? " +
                         " ORDER BY PHRASE_ID OFFSET ? LIMIT ?",
                 this::buildPhrase,
                 categoryId,
