@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class AllowInsert {
-    private ConfigurationRepository configurationRepository;
+    private final ConfigurationRepository configurationRepository;
 
     public void execute() {
         if (!configurationRepository.findConfiguration().getAllowInserts())
