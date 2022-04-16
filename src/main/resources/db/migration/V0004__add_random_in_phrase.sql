@@ -1,0 +1,1 @@
+alter table T_PHRASES add column RANDOM_ORDER BIGINT DEFAULT (random() * 100000000) NOT NULL;

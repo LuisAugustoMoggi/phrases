@@ -2,6 +2,7 @@ package br.com.pipelivre.phrases.controllers;
 
 import br.com.pipelivre.phrases.domains.Phrase;
 import br.com.pipelivre.phrases.repositories.PhraseRepository;
+import br.com.pipelivre.phrases.usecases.AllowInsert;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @RequestMapping("/v1/phrases")
 @RequiredArgsConstructor
 public class PhraseController {
+    private final AllowInsert allowInsert;
     private final PhraseRepository phraseRepository;
 
     @GetMapping
@@ -30,6 +32,7 @@ public class PhraseController {
 
     @PostMapping
     public void createPhrase(@RequestBody Phrase phrase) {
+        allowInsert.execute();
         phraseRepository.insert(phrase);
     }
 
